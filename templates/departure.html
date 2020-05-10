@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="display-5 mt-4">Летим {{ departure }}</h1>
+<p class="mb-4">Найдено {{ count }} {{ declension }}, от {{ min_price }} до {{ max_price }} и от {{ min_nights }} ночей до {{ max_nights }} ночей</p>
+<div class="row mt-5">
+  {% for tour_id, tour in tours.items %}
+  <div class="col-4">
+    <div class="card mb-4">
+      <img src={{ tour.picture }} class="card-img-top img-fluid" alt="">
+      <div class="card-body">
+        <h2 class="h5 card-title">{{ tour.title }}</h2>
+        <p class="card-text">{{ tour.description | truncatechars:200 }}</p>
+        <a href="/tour/{{ tour_id }}" class="btn btn-sm btn-primary">Подробнее</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

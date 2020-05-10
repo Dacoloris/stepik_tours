@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="jumbotron text-center mt-4">
+      <h1 class="display-4">Всякие туры</h1>
+      <p class="lead">{{ description }}</p>
+      <p class="mt-5 w-50 mx-auto">{{ subtitle }}</p>
+    </section>
+    <!-- CARDS -->
+    <div class="row mt-5">
+      {% for tour_id, tour in tours.items %}
+        <div class="col-4">
+          <div class="card mb-4">
+            <div class="embed-responsive embed-responsive-16by9">
+               <img class="card-img-top embed-responsive-item" src={{ tour.picture }} alt="" />
+            </div>          
+            <div class="card-body">
+              <h2 class="h5 card-title">{{ tour.title }}</h2>
+              <p class="card-text">{{ tour.description | truncatechars:200 }}</p>
+              <a href="/tour/{{ tour_id }}" class="btn btn-sm btn-primary">Подробнее</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock %}
